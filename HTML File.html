@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MGT211 Comprehensive Handouts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* Off-White */
+            color: #1e293b; /* Dark Slate */
+        }
+        /* Dark Theme Styles */
+        body.dark-theme {
+            background-color: #1e293b; /* Dark Slate */
+            color: #f8fafc; /* Off-White */
+        }
+        .dark-theme .bg-white {
+            background-color: #334155; /* Slightly lighter slate */
+        }
+        .dark-theme .text-slate-800 {
+            color: #f8fafc;
+        }
+        .dark-theme .text-slate-900 {
+            color: #f8fafc;
+        }
+        .dark-theme .text-slate-600 {
+            color: #cbd5e1; /* Lighter slate for text */
+        }
+        .dark-theme .border-slate-200 {
+            border-color: #475569;
+        }
+        .dark-theme .shadow-md {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3), 0 2px 4px -2px rgba(0, 0, 0, 0.3);
+        }
+        .dark-theme .nav-link {
+            color: #cbd5e1;
+        }
+        .dark-theme .nav-link.active {
+            background-color: #475569;
+            color: #f8fafc;
+        }
+        .dark-theme .hover\:bg-slate-700:hover {
+            background-color: #475569;
+        }
+        .dark-theme .border-b {
+            border-color: #475569;
+        }
+        .dark-theme .border-t {
+            border-color: #475569;
+        }
+
+
+        .sidebar {
+            transition: transform 0.3s ease-in-out;
+            transform: translateX(0);
+        }
+        .sidebar.hidden-mobile {
+            transform: translateX(-100%);
+        }
+        @media (min-width: 768px) {
+            .sidebar.hidden-mobile {
+                transform: translateX(0);
+            }
+        }
+
+        .nav-link {
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+        .nav-link.active {
+            background-color: #475569; /* Muted Blue */
+            color: #f8fafc; /* Off-White */
+        }
+        .content-section {
+            display: none;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .expandable-card-header {
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        .expandable-card-header:hover {
+            background-color: #f1f5f9; /* Light Slate */
+        }
+        .dark-theme .expandable-card-header:hover {
+            background-color: #475569;
+        }
+        .card-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out;
+        }
+        .card-content.open {
+            max-height: 1000px; /* Adjust as needed for content */
+        }
+        .tag {
+            background-color: #e2e8f0; /* Light Slate */
+            color: #475569; /* Muted Blue */
+            padding: 0.2rem 0.6rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+        .dark-theme .tag {
+            background-color: #475569;
+            color: #f8fafc;
+        }
+        .search-container {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            background-color: inherit; /* Inherit body background */
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .dark-theme .search-container {
+            border-color: #475569;
+        }
+        .fav-recent-section {
+            padding-top: 1rem;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 1rem;
+        }
+        .dark-theme .fav-recent-section {
+            border-color: #475569;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <div class="flex flex-col md:flex-row min-h-screen">
+        <!-- Sidebar Navigation -->
+        <aside class="sidebar w-full md:w-64 bg-slate-800 text-slate-100 p-4 md:p-6 shadow-lg flex-shrink-0">
+            <div class="flex justify-between items-center mb-6 border-b border-slate-600 pb-4">
+                <h1 class="text-2xl font-bold text-white">MGT211 Handouts</h1>
+                <button id="themeToggle" class="p-2 rounded-full bg-slate-700 hover:bg-slate-600 focus:outline-none focus:ring-2 focus:ring-amber-500">
+                    <svg class="w-6 h-6 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.325 3.317c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                </button>
+            </div>
+            
+            <div class="search-container">
+                <input type="text" id="searchBar" placeholder="Search notes..." class="w-full p-2 rounded-md bg-slate-700 text-white placeholder-slate-400 focus:ring-2 focus:ring-amber-500 focus:outline-none">
+            </div>
+
+            <nav id="navigation" class="mt-4">
+                <!-- Navigation links will be dynamically populated here -->
+            </nav>
+
+            <div class="fav-recent-section">
+                <h3 class="text-lg font-semibold text-white mb-3">Quick Access</h3>
+                <div id="favoriteNotes" class="mb-4">
+                    <h4 class="text-sm font-medium text-slate-300 mb-2">Favorites</h4>
+                    <ul id="favoriteList" class="space-y-1 text-slate-400 text-sm">
+                        <!-- Favorite notes will be added here -->
+                        <li class="p-2 hover:bg-slate-700 rounded-md cursor-pointer" data-target="business-fundamentals">Business Fundamentals</li>
+                    </ul>
+                </div>
+                <div id="recentNotes">
+                    <h4 class="text-sm font-medium text-slate-300 mb-2">Recent</h4>
+                    <ul id="recentList" class="space-y-1 text-slate-400 text-sm">
+                        <!-- Recent notes will be added here -->
+                    </ul>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Mobile Sidebar Toggle -->
+        <button id="sidebarToggle" class="md:hidden fixed bottom-4 right-4 bg-amber-500 text-white p-3 rounded-full shadow-lg z-50">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+        </button>
+
+        <!-- Main Content Area -->
+        <main class="flex-1 p-6 md:p-10 overflow-auto">
+            <!-- Content sections will be dynamically populated here -->
+        </main>
+    </div>
+
+    <script>
+        // Data structure for the entire MGT211 Handouts
+        const handoutsData = [
+            {
+                id: 'business-fundamentals',
+                title: 'Business Fundamentals & Organizational Structures',
+                category: 'Fundamentals',
+                content: `
+                    <p class="text-slate-600 mb-6">This section covers the very basics of what a business is, its key characteristics, and the different ways businesses can be legally set up. Understanding these foundational concepts is <strong class="text-amber-600">crucial</strong> for grasping all other topics in MGT211.</p>
+                    <div class="space-y-6">
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">What is "Business"?</h3>
+                            <p class="text-slate-600 mb-2">Simply put, "business" means being busy with activities that aim to <strong class="text-amber-600">earn money</strong>. It involves people regularly producing or exchanging goods (like products) and services (like haircuts or advice) with the goal of making a <strong class="text-amber-600">profit</strong> for everyone involved. Important to remember: if you produce or buy something just for your own personal use, it's <strong class="text-amber-600">not considered a business activity</strong>.</p>
+                            <h4 class="font-medium text-slate-700 mt-4 mb-2">Key Definitions:</h4>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1">
+                                <li><strong>L. H. Haney:</strong> Business is about human activities focused on getting or creating wealth by buying and selling things.</li>
+                                <li><strong>James Stephenson:</strong> Any human activity done to earn a profit can be called business.</li>
+                                <li><strong>B. W. Wheeler:</strong> A business is an organization set up to provide goods and services to society, driven by the desire for private gain (profit).</li>
+                            </ul>
+                            <h4 class="font-medium text-slate-700 mt-4 mb-2">How Business Works (Conceptual Flow):</h4>
+                            <img src="https://placehold.co/400x200/e2e8f0/475569?text=Business+Cycle+Diagram" alt="Business Cycle Diagram" class="w-full max-w-md mx-auto my-4 rounded-md">
+                            <p class="text-sm text-slate-500 text-center">This diagram shows how buying and selling activities lead to wealth creation in a business.</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Important Characteristics of a Good Business</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Capital:</strong> This is the <strong class="text-amber-600">money or assets needed</strong> to start and run a business. It's like the "blood" of any business; without enough, it struggles. Businesses often take loans from banks if they need more capital.</li>
+                                <li><strong>Creation of Utility:</strong> Business activities create "utility," meaning they make products or services <strong class="text-amber-600">more useful or desirable</strong> to people. This benefits both customers (by satisfying their needs) and the business (by earning profit).</li>
+                                <li><strong>Dealing in Goods and Services:</strong> A business regularly buys, sells, produces, or exchanges goods (physical items) and services (things done for others) in return for money or value.</li>
+                                <li><strong>Employment:</strong> Businesses provide jobs, not just for the owners, but also for employees, agents, and transporters, contributing to the economy.</li>
+                                <li><strong>Islamic Process:</strong> In an Islamic context, business is seen as a lawful and good way to earn a living (Rizq-e-Halal), emphasizing ethical practices.</li>
+                                <li><strong>Motive:</strong> The main reason for any business is to <strong class="text-amber-600">earn profit</strong>. If there's no aim for profit, it's generally not considered a business.</li>
+                                <li><strong>Organization:</strong> A business needs a <strong class="text-amber-600">proper structure</strong> and management to run smoothly and achieve its goals.</li>
+                                <li><strong>Production or Purchase of Goods:</strong> Businesses either make products themselves or buy them from others to meet customer demand.</li>
+                                <li><strong>Regular Transaction:</strong> Business isn't a one-time thing; it involves <strong class="text-amber-600">ongoing and continuous buying and selling</strong> activities.</li>
+                                <li><strong>Risks and Uncertainty:</strong> Every business faces <strong class="text-amber-600">risks</strong> (like competition, economic changes) and uncertainties. Good businesses plan for these.</li>
+                                <li><strong>Sale or Transfer for Value:</strong> Products or services are sold or given to others in exchange for a specific price or value.</li>
+                                <li><strong>Social Welfare:</strong> Businesses also contribute to society by offering products at fair prices and sometimes engaging in community activities.</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">The Nature of Business</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Economic Activity:</strong> Business is fundamentally about creating wealth and satisfying human wants through economic means.</li>
+                                <li><strong>Human Activity:</strong> It's carried out by people, making it a human endeavor with economic goals.</li>
+                                <li><strong>Social Process:</strong> Business involves interactions among various groups—owners, employees, professionals, and customers—making it a social system.</li>
+                                <li><strong>System:</strong> A business operates as an organized system, with different parts working together in a planned way to achieve specific objectives.</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Components of Business: Industry & Commerce</h3>
+                            <p class="text-slate-600 mb-2">Business is broadly divided into two main parts that work hand-in-hand:</p>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2 mb-4">
+                                <li><strong>Industry:</strong> This is all about <strong class="text-amber-600">producing and preparing goods and services</strong>. It's where raw materials are transformed into finished products (e.g., a factory making cars from steel and plastic).</li>
+                                <li><strong>Commerce:</strong> This covers <strong class="text-amber-600">all the activities that help move goods from where they are produced to the final customer</strong>. It includes buying, selling, and all the services that support trade.</li>
+                            </ul>
+                            <p class="text-slate-600 mb-4">It's <strong class="text-amber-600">important to understand that Industry and Commerce are deeply connected</strong>. You can't have one without the other functioning well. Industry makes the products, and Commerce ensures they reach the people who need them.</p>
+
+                            <h4 class="font-medium text-slate-700 mt-4 mb-2">Types of Industry:</h4>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1 mb-4">
+                                <li><strong>Primary Industry:</strong> Deals with extracting or growing natural resources.
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Extractive:</em> Mining, fishing, forestry.</li>
+                                        <li><em>Genetic:</em> Agriculture, cattle breeding.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Secondary Industry:</strong> Transforms raw materials into finished or semi-finished goods.
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Constructive:</em> Building roads, bridges, canals (large infrastructure projects).</li>
+                                        <li><em>Manufacturing:</em> Making products in factories (e.g., textiles, electronics).</li>
+                                        <li><em>Services:</em> Providing intangible services (e.g., banking, healthcare).</li>
+                                    </ul>
+                                </li>
+                            </ul>
+
+                            <h4 class="font-medium text-slate-700 mt-4 mb-2">Types of Commerce (Trade & Aids to Trade):</h4>
+                            <ul class="list-disc list-inside text-slate-600 space-y-1 mb-4">
+                                <li><strong>Trade:</strong> The actual buying and selling of goods.
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Home Trade:</em> Within one country (Wholesale - selling to retailers; Retail - selling to final consumers).</li>
+                                        <li><em>Foreign Trade:</em> Between countries (Import - buying from abroad; Export - selling abroad).</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Aids to Trade:</strong> These are the essential services that make trade possible and easier. <strong class="text-amber-600">This is a frequently tested concept!</strong>
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li>Banking (for payments and loans)</li>
+                                        <li>Transportation (moving goods)</li>
+                                        <li>Insurance (protecting against risks)</li>
+                                        <li>Warehousing (storing goods)</li>
+                                        <li>Agents (connecting buyers and sellers)</li>
+                                        <li>Finance (managing money)</li>
+                                        <li>Advertising (promoting products)</li>
+                                        <li>Communication (sharing information)</li>
+                                    </ul>
+                                    <p class="text-sm text-slate-500 mt-2">Example: Questions often ask to identify what is *not* an aid to trade. Foreign trade itself is a type of trade, not an aid to trade.</p>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Forms of Business Organization</h3>
+                            <p class="text-slate-600 mb-2">Businesses can be set up in different legal ways, each with its own advantages and disadvantages, especially concerning <strong class="text-amber-600">liability</strong> (who is responsible for debts).</p>
+                            <ul class="list-disc list-inside text-slate-600 space-y-4">
+                                <li><strong>Sole Proprietorship:</strong>
+                                    <p class="mb-1">This is the <strong class="text-amber-600">oldest and simplest</strong> form, owned and run by one person. It's easy to start and the owner keeps all profits. However, it comes with <strong class="text-amber-600">unlimited liability</strong>, meaning the owner's personal assets (like their house or car) can be taken to pay business debts. This can limit growth due to high personal risk.</p>
+                                </li>
+                                <li><strong>Partnership:</strong>
+                                    <p class="mb-1">Owned by two or more people who agree to share profits and losses. It's relatively easy to start and can pool more capital than a sole proprietorship. Like sole proprietorships, partners usually have <strong class="text-amber-600">unlimited liability</strong>, making personal assets vulnerable.</p>
+                                </li>
+                                <li><strong>Joint Stock Company:</strong>
+                                    <p class="mb-1">This is a more complex legal entity, owned by shareholders. Its key feature is <strong class="text-amber-600">limited liability</strong>. This means shareholders are only responsible for the amount they invested in the company, protecting their personal assets. This makes it much easier to raise large amounts of capital from many investors, enabling large-scale operations. However, the separation of ownership and management can sometimes lead to shareholders feeling less directly involved.</p>
+                                </li>
+                                <li><strong>Cooperative Societies:</strong>
+                                    <p class="mb-1">Organizations formed by people who voluntarily cooperate for their mutual social, economic, and cultural benefit. They are typically democratically controlled by their members.</p>
+                                </li>
+                            </ul>
+                            <p class="text-slate-600 mt-4"><strong class="text-amber-600">Key takeaway:</strong> The type of liability (unlimited vs. limited) is a fundamental difference between these structures and significantly impacts risk and ability to raise capital.</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Company Governance & Share Capital</h3>
+                            <p class="text-slate-600 mb-2">This covers the rules and financial aspects of how companies, especially Joint Stock Companies, are run.</p>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Company Meetings:</strong> Public limited companies have legal requirements to hold specific meetings. For example, the notice for an <strong class="text-amber-600">Annual General Meeting (AGM) must be given at least 21 days</strong> before the meeting date.</li>
+                                <li><strong>Types of Share Capital:</strong> This refers to the different ways a company's ownership (capital) is categorized:
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Authorized Capital:</em> The maximum amount of capital a company is allowed to raise.</li>
+                                        <li><em>Issued Capital:</em> The portion of authorized capital offered to the public.</li>
+                                        <li><em>Subscribed Capital:</em> The portion of issued capital that investors agree to buy.</li>
+                                        <li><em>Called-up Capital:</em> The amount of subscribed capital that the company has asked shareholders to pay.</li>
+                                        <li><em>Uncalled-up Capital:</em> The amount of subscribed capital not yet asked for.</li>
+                                        <li><em>Paid-up Capital:</em> The amount of called-up capital that shareholders have actually paid.</li>
+                                        <li><em><strong class="text-amber-600">Reserve Capital:</strong></em> This is a <strong class="text-amber-600">specific portion of the uncalled-up capital that a company decides to keep aside and only use for paying off debts when the company is closing down (winding up)</strong>.</li>
+                                        <li><em>Redeemable Capital:</em> Capital that can be bought back by the company.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'human-resource-management',
+                title: 'Human Resource Management (HRM)',
+                category: 'HRM',
+                content: `
+                    <p class="text-slate-600 mb-6">Human Resource Management (HRM) is all about how organizations manage their people. It focuses on attracting, developing, and keeping a skilled and effective workforce. HRM is <strong class="text-amber-600">strategically important</strong> because it directly impacts a company's performance and success.</p>
+                    <div class="space-y-6">
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">HR Planning & Job Analysis</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>HR Planning:</strong> This is the process of figuring out how many and what kind of people an organization will need in the future, and how to get them. It involves looking at both current employees (internal supply) and the job market (external supply).</li>
+                                <li><strong>Job Analysis:</strong> A key part of HR planning. It helps define jobs clearly:
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Job Description:</em> Lists the <strong class="text-amber-600">duties, responsibilities, and working conditions</strong> of a job.</li>
+                                        <li><em>Job Specification:</em> States the <strong class="text-amber-600">skills, abilities, education, and experience</strong> a person needs to do the job.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Forecasting Tools:</strong> Tools like <strong class="text-amber-600">replacement charts</strong> (showing who can replace whom) and <strong class="text-amber-600">skills inventories</strong> (listing employee skills) help predict future HR needs.</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Recruitment & Selection</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Recruitment:</strong> This is the process of <strong class="text-amber-600">attracting qualified people</strong> to apply for job openings. This can be done internally (e.g., promoting current employees) or externally (e.g., through job ads, universities, recruitment agencies).</li>
+                                <li><strong>Selection:</strong> Once applications are in, selection is the process of <strong class="text-amber-600">choosing the best candidate</strong> for the job. Common methods include:
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li>Application forms</li>
+                                        <li>Tests (skills, knowledge, aptitude)</li>
+                                        <li><strong class="text-amber-600">Interviews</strong> (a very common selection method)</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Reliability & Validity of Selection Devices:</strong>
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Reliability:</em> A selection device is <strong class="text-amber-600">reliable if it gives consistent results over time</strong> when taken by the same person.</li>
+                                        <li><em>Validity:</em> A selection device is <strong class="text-amber-600">valid if it accurately measures what it's supposed to measure</strong> (e.g., job-related skills).</li>
+                                    </ul>
+                                    <p class="text-sm text-slate-500 mt-2">Example: Personality tests like MBTI might be reliable (give similar results each time) but not always valid (don't accurately predict job performance).</p>
+                                </li>
+                                <li><strong>Fair Hiring:</strong> Concepts like Equal Employment Opportunity (EEO) and Affirmative Action ensure fair and unbiased hiring practices.</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">HR Development, Appraisal & Compensation</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Human Resource Development:</strong> Mainly focuses on <strong class="text-amber-600">training employees</strong> to improve their skills and knowledge. This can be done on-the-job (learning while working) or off-the-job (e.g., lectures, role-playing, business games).</li>
+                                <li><strong>Performance Appraisal:</strong> This is where an employee's performance is regularly evaluated against set expectations. It helps in giving feedback, identifying training needs, and deciding on pay raises.</li>
+                                <li><strong>Compensation & Incentives:</strong>
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Compensation:</em> Includes direct pay like <strong class="text-amber-600">wages</strong> (hourly) and <strong class="text-amber-600">salaries</strong> (fixed pay).</li>
+                                        <li><em>Incentives:</em> Extra rewards given for good performance. These can be:
+                                            <ul class="list-square list-inside ml-5">
+                                                <li><em>Individual Incentives:</em> Like <strong class="text-amber-600">bonuses</strong> or merit pay for individual performance.</li>
+                                                <li><em>Company-wide Incentives:</em> Benefits tied to the company's overall performance, such as <strong class="text-amber-600">profit-sharing</strong> (employees get a share of company profits), <strong class="text-amber-600">gain-sharing</strong> (employees share in cost savings), or <strong class="text-amber-600">pay-for-knowledge plans</strong> (rewards for learning new skills).</li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li><strong>Collective Affairs:</strong> Deals with relationships between management and employees, often involving labor unions and collective bargaining (negotiating terms of employment).</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Motivation Theories (Why People Work)</h3>
+                            <p class="text-slate-600 mb-2">These theories try to explain what drives employees to perform well. Understanding them helps managers motivate their teams effectively.</p>
+                            <ul class="list-disc list-inside text-slate-600 space-y-4">
+                                <li><strong>Classical Theories (Early Ideas):</strong>
+                                    <p class="mb-1">Early thinkers like Frederick Taylor (Scientific Management) believed people were mainly motivated by <strong class="text-amber-600">money</strong>. They focused on efficiency through time-and-motion studies, but were criticized for treating workers like machines.</p>
+                                </li>
+                                <li><strong>Behavior Theory (Hawthorne Studies):</strong>
+                                    <p class="mb-1">The famous Hawthorne Studies showed that productivity could increase just because workers felt they were getting <strong class="text-amber-600">special attention</strong>. This "Hawthorne Effect" highlighted the importance of psychological and social factors, not just money.</p>
+                                </li>
+                                <li><strong>Contemporary Theories (Modern Views):</strong>
+                                    <ul class="list-circle list-inside ml-5 space-y-2">
+                                        <li><em>Douglas McGregor's Theory X and Theory Y:</em>
+                                            <ul class="list-square list-inside ml-5">
+                                                <li><strong class="text-amber-600">Theory X:</strong> Managers believe employees are lazy, irresponsible, and need strict control.</li>
+                                                <li><strong class="text-amber-600">Theory Y:</strong> Managers believe employees are naturally responsible, creative, and self-motivated.</li>
+                                            </ul>
+                                            <p class="text-sm text-slate-500 mt-1">This shows how a manager's beliefs about their team can affect their management style.</p>
+                                        </li>
+                                        <li><em>Abraham Maslow's Hierarchy of Needs:</em>
+                                            <p class="mb-1">Proposes that human needs are arranged in a pyramid, from basic (like food, safety) to higher-level (like self-fulfillment). People are motivated to satisfy lower-level needs first before moving to higher ones. <strong class="text-amber-600">Example:</strong> Buying a burglar alarm fulfills a "Safety" need.</p>
+                                            <img src="https://placehold.co/300x200/e2e8f0/475569?text=Maslow's+Hierarchy" alt="Maslow's Hierarchy of Needs" class="w-full max-w-xs mx-auto my-3 rounded-md">
+                                        </li>
+                                        <li><em>Herzberg's Two-Factor Theory:</em>
+                                            <p class="mb-1">Distinguishes between:
+                                                <ul class="list-square list-inside ml-5">
+                                                    <li><strong class="text-amber-600">Hygiene Factors:</strong> (e.g., salary, working conditions) These prevent dissatisfaction but don't necessarily motivate.</li>
+                                                    <li><strong class="text-amber-600">Motivators:</strong> (e.g., achievement, recognition, responsibility) These actually drive satisfaction and motivation.</li>
+                                                </ul>
+                                                <p class="text-sm text-slate-500 mt-1">Both are needed for employees to be productive and happy.</p>
+                                            </p>
+                                        </li>
+                                        <li><em>Expectancy Theory:</em>
+                                            <p class="mb-1">People are motivated if they believe their effort will lead to good performance, which will lead to desired rewards.</p>
+                                        </li>
+                                        <li><em>Equity Theory:</em>
+                                            <p class="mb-1">People compare their inputs (effort, skills) and outputs (pay, recognition) to others. They seek <strong class="text-amber-600">fairness</strong>. If they feel unfairly treated, it can reduce motivation.</p>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <p class="text-slate-600 mt-4"><strong class="text-amber-600">Overall:</strong> Modern management uses a mix of strategies, including fair pay, recognition, and good job design, to motivate employees, recognizing that human psychology is complex.</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Job Satisfaction & Morale</h3>
+                            <p class="text-slate-600 mb-2">Strategies to make jobs more engaging and employees happier:</p>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Job Rotation:</strong> Periodically moving employees between different tasks to add variety and reduce boredom.</li>
+                                <li><strong>Job Enrichment:</strong> Increasing an employee's responsibilities and control over their work, making the job more challenging and rewarding.</li>
+                                <li><strong>Job Redesign:</strong> Changing how a job is structured to improve its fit with the employee's skills and preferences.</li>
+                                <li><strong>Management by Objectives (MBO):</strong> A system where managers and employees work together to set clear goals.</li>
+                                <li><strong>Participative Management & Empowerment:</strong> Involving employees in decision-making and giving them more authority.</li>
+                                <li><strong>Team Management:</strong> Organizing work around teams to foster collaboration and shared responsibility.</li>
+                                <li><strong>Managerial Styles:</strong> Different ways managers lead:
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Autocratic:</em> Manager makes all decisions.</li>
+                                        <li><em>Democratic:</em> Manager involves employees in decisions.</li>
+                                        <li><em>Free-rein:</em> Manager gives employees a lot of freedom.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'marketing-management',
+                title: 'Marketing Management',
+                category: 'Marketing',
+                content: `
+                    <p class="text-slate-600 mb-6">Marketing is essentially about understanding what customers want and then creating, communicating, delivering, and exchanging offerings that have value for them. It's about <strong class="text-amber-600">"finding a need and filling it."</strong></p>
+                    <div class="space-y-6">
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Core Concepts of Marketing</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Definition:</strong> Marketing is the process of planning and executing the creation, pricing, promotion, and distribution of ideas, goods, and services to create exchanges that satisfy individual and organizational goals.</li>
+                                <li><strong>Value:</strong> In marketing, value is a comparison of a product's <strong class="text-amber-600">benefits versus its costs</strong>. Customers buy products that offer them good value.</li>
+                                <li><strong>Utility:</strong> This refers to the <strong class="text-amber-600">value added by the marketer</strong> to satisfy a human want or need. There are four main types:
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><strong class="text-amber-600">Time Utility:</strong> Making a product available <strong class="text-amber-600">when</strong> the customer wants it (e.g., medicine available at midnight).</li>
+                                        <li><strong class="text-amber-600">Place Utility:</strong> Making a product available <strong class="text-amber-600">where</strong> the customer wants it (e.g., a cold drink available at a beach).</li>
+                                        <li><strong class="text-amber-600">Ownership/Possession Utility:</strong> The value created when the customer <strong class="text-amber-600">takes ownership</strong> of the product (e.g., easy payment options).</li>
+                                        <li><strong class="text-amber-600">Form Utility:</strong> The value added by changing the <strong class="text-amber-600">physical characteristics</strong> (shape, size, function) of a product to make it more useful (e.g., raw materials turned into a finished product).</li>
+                                    </ul>
+                                </li>
+                                <li><strong>What is Marketed?:</strong> Marketing applies to <strong class="text-amber-600">tangible goods</strong> (physical products), <strong class="text-amber-600">intangible services</strong> (e.g., education, healthcare), and even <strong class="text-amber-600">ideas</strong>. Services are distinct because they are intangible.</li>
+                                <li><strong>Relationship Marketing:</strong> This is a modern approach that focuses on <strong class="text-amber-600">building long-term, lasting relationships</strong> with customers and suppliers, rather than just focusing on single sales. Loyalty programs are an example.</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">The Marketing Environment</h3>
+                            <p class="text-slate-600 mb-2">Businesses don't operate in a vacuum. They are constantly influenced by various factors, both inside and outside the company. The marketing environment is <strong class="text-amber-600">dynamic and always changing</strong>.</p>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>External Factors (Uncontrollable):</strong> These are outside the company's direct control but must be monitored.
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Political/Legal:</em> Government regulations, laws.</li>
+                                        <li><em>Social/Cultural:</em> Trends, values, lifestyles.</li>
+                                        <li><em>Technological:</em> New innovations, digital advancements.</li>
+                                        <li><em>Economic:</em> Inflation, income levels, consumer spending power.</li>
+                                        <li><em>Competitive:</em> Actions of rivals.</li>
+                                        <li><em>Natural:</em> Environmental concerns, resource availability. Marketers must identify major trends here.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Internal Factors (Controllable):</strong> These are within the company's control, like its strengths and weaknesses.</li>
+                            </ul>
+                            <p class="text-slate-600 mt-4">These factors present both <strong class="text-amber-600">opportunities</strong> (things to take advantage of) and <strong class="text-amber-600">threats</strong> (challenges to overcome) for marketing programs.</p>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">The Marketing Mix (The 4 Ps)</h3>
+                            <p class="text-slate-600 mb-2">This is the <strong class="text-amber-600">most critical framework</strong> in marketing. It's the set of tools a company uses to implement its marketing strategy.</p>
+                            <ul class="list-disc list-inside text-slate-600 space-y-4">
+                                <li><strong>Product:</strong>
+                                    <p class="mb-1">This refers to the actual good or service offered to the market. It includes features, quality, branding, packaging, and design. <strong class="text-amber-600">Product differentiation</strong> (making your product stand out) is key for competitive advantage.</p>
+                                </li>
+                                <li><strong>Price:</strong>
+                                    <p class="mb-1">The amount of money customers have to pay to obtain the product. Pricing strategies aim to cover costs and achieve goals like maximizing profit or gaining market share.</p>
+                                </li>
+                                <li><strong>Place (Distribution):</strong>
+                                    <p class="mb-1">This involves all the activities that make the product available to target consumers. It includes distribution channels (e.g., retailers, wholesalers) and physical distribution (transportation, warehousing). Efficient distribution is vital.</p>
+                                </li>
+                                <li><strong>Promotion:</strong>
+                                    <p class="mb-1">Activities that communicate the merits of the product and persuade target customers to buy it. This includes advertising, personal selling, sales promotion, and public relations. <strong class="text-amber-600">Example:</strong> Educating consumers about stain-resistant carpets is a promotion activity.</p>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Product Classification & Life Cycle</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Product Classification:</strong> Products are categorized based on how consumers buy them or their use in industry.
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Consumer Products:</em> Bought by final consumers for personal consumption.
+                                            <ul class="list-square list-inside ml-5">
+                                                <li><strong class="text-amber-600">Convenience Goods:</strong> Bought frequently, with minimal effort (e.g., Nestle yogurt, chewing gum).</li>
+                                                <li><em>Shopping Goods:</em> Require more comparison and effort (e.g., furniture, electronics).</li>
+                                                <li><em>Specialty Goods:</em> Unique characteristics, consumers make a special effort to buy (e.g., luxury cars, specific brands).</li>
+                                            </ul>
+                                        </li>
+                                        <li><em>Industrial Products:</em> Bought by businesses for use in production or operations (e.g., a metal cutting machine).</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Product Life Cycle (PLC):</strong> This describes the typical stages a product goes through from its launch to its withdrawal from the market. Each stage requires different marketing strategies.
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><strong class="text-amber-600">Introduction:</strong> Product is new, sales are low, high costs, minimal competition.</li>
+                                        <li><strong class="text-amber-600">Growth:</strong> Sales grow rapidly, profits increase, <strong class="text-amber-600">competitors typically appear</strong>.</li>
+                                        <li><strong class="text-amber-600">Maturity:</strong> Sales peak, competition is intense, profits may decline. Price reductions and R&D investment are common.</li>
+                                        <li><strong class="text-amber-600">Decline:</strong> Sales and profits fall, product may be phased out.</li>
+                                    </ul>
+                                    <p class="text-sm text-slate-500 mt-2">Understanding PLC helps businesses adapt their pricing, promotion, and R&D strategies at each stage to maximize success.</p>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Branding, Packaging & Pricing Strategies</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Branding:</strong> Giving a product a unique name, symbol, or design to identify and differentiate it from competitors.
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Brand Equity:</em> The value of customer loyalty to a brand.</li>
+                                        <li><em>Brand Awareness:</em> How well customers recognize a brand.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Packaging & Labeling:</strong> The "dress" of the product. Packaging protects and contains, while labeling provides essential information (ingredients, usage).</li>
+                                <li><strong>Pricing Strategies:</strong> How companies set prices for their products.
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><strong class="text-amber-600">Price Skimming:</strong> Setting a <strong class="text-amber-600">high initial price</strong> for a new product, often to recover development costs quickly (e.g., new tech gadgets).</li>
+                                        <li><strong class="text-amber-600">Penetration Pricing:</strong> Setting a <strong class="text-amber-600">low initial price</strong> to quickly gain a large market share.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Distribution & Promotion Strategies</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Distribution Strategies:</strong> How products reach the customer.
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Intensive Distribution:</em> Selling through as many outlets as possible (common for convenience goods).</li>
+                                        <li><em>Exclusive Distribution:</em> Selling through only one or very few outlets in a given area.</li>
+                                        <li><em>Selective Distribution:</em> Using more than one, but fewer than all, intermediaries.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Physical Distribution:</strong> The actual movement and storage of products. This includes transportation, warehousing, and inventory management. <strong class="text-amber-600">Physical distribution functions influence ALL elements of the marketing mix.</strong></li>
+                                <li><strong>Sorting Function (Wholesalers):</strong> Wholesalers often perform a "sorting out" function, which means breaking down large quantities of goods into smaller, more manageable units (e.g., a wholesaler dividing a truckload of strawberries into 10kg baskets).</li>
+                                <li><strong>Promotion Objectives:</strong> To increase sales, communicate product information, and position products in the market.</li>
+                                <li><strong>Promotional Strategies:</strong>
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><strong class="text-amber-600">Push Strategy:</strong> Directing marketing efforts towards <strong class="text-amber-600">intermediaries</strong> (wholesalers, retailers) to encourage them to sell the product to consumers.</li>
+                                        <li><strong class="text-amber-600">Pull Strategy:</strong> Directing marketing efforts towards <strong class="text-amber-600">end consumers</strong> to create demand, which then "pulls" the product through the distribution channel.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Promotional Mix:</strong> The combination of tools used for promotion:
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li>Advertising (paid, non-personal communication)</li>
+                                        <li>Personal Selling (direct interaction with customers)</li>
+                                        <li>Sales Promotions (short-term incentives like contests, discounts)</li>
+                                        <li>Publicity/Public Relations (unpaid communication, managing public image)</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Advertising Campaigns:</strong> Involve steps like identifying the target audience, setting a budget, defining objectives, creating messages, selecting media, and evaluating effectiveness.</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'financial-management',
+                title: 'Financial Management & Accounting',
+                category: 'Finance',
+                content: `
+                    <p class="text-slate-600 mb-6">This section deals with how businesses manage their money. It covers financial decision-making and the essential language of business: accounting. Understanding these concepts is <strong class="text-amber-600">fundamental</strong> for evaluating any business's health.</p>
+                    <div class="space-y-6">
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Financial Management Basics</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Definition:</strong> Financial management is about the efficient and effective handling of an organization's money to achieve its goals.</li>
+                                <li><strong>Key Responsibilities of Financial Managers:</strong>
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Cash-Flow Management:</em> Ensuring enough money is available for daily operations and wisely investing any extra funds.</li>
+                                        <li><em>Financial Control:</em> Checking actual financial performance against plans.</li>
+                                        <li><em>Financial Planning:</em> Creating a plan that shows future money needs and how those funds will be obtained and used.</li>
+                                        <li><em>Dealing with Banks:</em> Managing bank accounts, foreign trade, and short-term loans.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Ratio Analysis:</strong> Used to understand the relationships between different financial figures (e.g., current assets to current liabilities).</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Accounting Fundamentals</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Accounting:</strong> A system for <strong class="text-amber-600">recording, classifying, analyzing, summarizing, and reporting</strong> a company's financial information in money terms. It's the "language of business."</li>
+                                <li><strong>Bookkeeping:</strong> This is just the <strong class="text-amber-600">recording part</strong> of accounting.</li>
+                                <li><strong>Types of Accounting:</strong>
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Financial Accounting:</em> Provides information for <strong class="text-amber-600">external users</strong> (investors, creditors, government).</li>
+                                        <li><em>Managerial Accounting:</em> Provides information for <strong class="text-amber-600">internal users</strong> (managers) to make decisions.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Accounting Equation:</strong> The fundamental rule of accounting: <strong class="text-amber-600">Assets = Liabilities + Owners’ Equity</strong>. This equation must always balance.</li>
+                                <li><strong>Double-Entry Accounting:</strong> Every financial transaction affects at least two accounts, ensuring the accounting equation remains balanced.</li>
+                                <li><strong>Generally Accepted Accounting Principles (GAAP):</strong> These are the <strong class="text-amber-600">standard rules and guidelines</strong> that companies must follow when preparing financial reports globally.</li>
+                                <li><strong>Budget:</strong> A very important <strong class="text-amber-600">internal financial report</strong> that estimates future income and expenses for a specific period.</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Assets, Liabilities & Owners' Equity</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Assets:</strong> These are the <strong class="text-amber-600">economic resources a company owns</strong> that are expected to provide future benefits.
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><strong class="text-amber-600">Tangible Assets:</strong> Have a physical form (e.g., cash, buildings, machinery, inventory).</li>
+                                        <li><strong class="text-amber-600">Intangible Assets:</strong> Do not have a physical form but have value (e.g., copyrights, patents, trademarks, goodwill).</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Liabilities:</strong> These are the <strong class="text-amber-600">debts or obligations a company owes</strong> to outside organizations or individuals (e.g., loans, accounts payable). The handout mentions liabilities towards owners and other parties.</li>
+                                <li><strong>Owners’ Equity:</strong> This is the <strong class="text-amber-600">owner's claim on the assets</strong> of the business after all liabilities have been paid. It's the residual value.</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Financial Statements</h3>
+                            <p class="text-slate-600 mb-2">These are the primary reports that summarize a company's financial status and performance for decision-making.</p>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Balance Sheet:</strong>
+                                    <p class="mb-1">Provides a <strong class="text-amber-600">"snapshot" of a company's financial position at a specific point in time</strong> (e.g., December 31st). It lists assets, liabilities, and owners' equity.</p>
+                                </li>
+                                <li><strong>Income Statement (Profit & Loss Account):</strong>
+                                    <p class="mb-1">Shows a company's <strong class="text-amber-600">revenues and expenses over a period of time</strong> (e.g., for the year ended December 31st) to determine the net profit or loss. <strong class="text-amber-600">Profit</strong> is when revenues are more than expenses; <strong class="text-amber-600">Loss</strong> is when expenses are more than revenues.</p>
+                                </li>
+                                <li><strong>Trial Balance:</strong> Lists all the debit and credit account balances for a period. While debits and credits should equal, it doesn't guarantee that the books are completely error-free.</li>
+                                <li><strong>Users of Accounting Information:</strong> Many different groups rely on this information, including managers, employees, investors, creditors, banks, and tax authorities.</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Inventory Costing & Auditing</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Inventory Costing Methods:</strong> Ways to determine the cost of goods sold and the value of remaining inventory.
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><strong class="text-amber-600">FIFO (First-In, First-Out):</strong> Assumes the <strong class="text-amber-600">first goods bought are the first ones sold</strong>. This means remaining inventory is valued at the most recent purchase prices.</li>
+                                        <li><strong class="text-amber-600">LIFO (Last-In, First-Out):</strong> Assumes the <strong class="text-amber-600">last goods bought are the first ones sold</strong>. This means remaining inventory is valued at the oldest purchase prices.</li>
+                                        <li><em>Average Cost:</em> Uses the average cost of all inventory available for sale.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Auditing:</strong> The process of examining a company's financial records to ensure they are accurate and comply with standards.
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Internal Auditors:</em> Work for the company itself to check compliance and efficiency.</li>
+                                        <li><em>External Auditors:</em> Independent professionals who provide an unbiased opinion on whether the financial statements are fair and accurate.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'operations-management',
+                title: 'Operations & Quality Management',
+                category: 'Operations',
+                content: `
+                    <p class="text-slate-600 mb-6">Operations management focuses on how businesses produce goods and services efficiently and effectively. Quality management ensures these products and services meet high standards. These areas are vital for a company's productivity and customer satisfaction.</p>
+                    <div class="space-y-6">
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Production & Productivity</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Productivity:</strong> This is a measure of <strong class="text-amber-600">how effectively an organization uses its resources</strong> (like labor, materials, and capital) to produce goods or services. Higher productivity means more output with the same or fewer inputs.</li>
+                                <li><strong>Production:</strong> The process of <strong class="text-amber-600">converting raw materials into finished goods</strong> or services. This process adds value to the raw materials.</li>
+                                <li><strong>Utility in Production:</strong> Production creates utility by transforming raw materials into useful products (Form Utility).</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Operational Planning & Layout</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Operational Planning:</strong> Operations managers decide on things like:
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Production Capacity:</em> How much can be produced.</li>
+                                        <li><em>Industry Location:</em> Where to set up the production facility. Factors considered include availability of skilled workers, infrastructure (electricity, water, transport), raw materials, and climate.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Layout Plan:</strong> The internal arrangement of machinery, equipment, and workstations within a facility. A good layout optimizes efficiency, reduces costs, and prevents accidents.</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Production Planning Tools</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Gantt Charts:</strong> These are <strong class="text-amber-600">bar charts used for project scheduling</strong>. They visually show tasks, their duration, and how resources are being used over time.</li>
+                                <li><strong>PERT Networks:</strong> These are <strong class="text-amber-600">flow charts for complex projects</strong>. They show the sequence of activities, their estimated times and costs, and help identify the <strong class="text-amber-600">critical path</strong> (the longest sequence of activities that determines the project's minimum completion time).</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Material Management & Inventory Systems</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Material Management:</strong> Oversees the entire flow of materials, from purchasing to production to inventory control. Challenges include managing material flow and standardization.</li>
+                                <li><strong>Key Areas of Material Management:</strong> Transportation, storage, record keeping, and inventory control (managing quantity and cost).</li>
+                                <li><strong class="text-amber-600">Just-In-Time (JIT) Inventory System:</strong> This is a <strong class="text-amber-600">crucial modern concept</strong> where materials are received from suppliers <strong class="text-amber-600">exactly when they are needed</strong> for production.
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><strong class="text-amber-600">Benefits:</strong> Minimizes inventory holding costs, reduces waste, and improves cash flow.</li>
+                                        <li><strong class="text-amber-600">Requirement:</strong> Relies heavily on extremely reliable suppliers and accurate real-time inventory data.</li>
+                                    </ul>
+                                    <p class="text-sm text-slate-500 mt-2">This contrasts with "Just-In-Case," where large stocks are held, which can tie up money and create storage issues.</p>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Total Quality Management (TQM)</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Definition:</strong> TQM, also known as <strong class="text-amber-600">Quality Assurance</strong>, is a management philosophy focused on <strong class="text-amber-600">continuous improvement and achieving customer satisfaction</strong>.</li>
+                                <li><strong>Core Idea:</strong> The "pillar of quality" is often considered <strong class="text-amber-600">"doing it right the first time."</strong></li>
+                                <li><strong>Quality Control vs. Quality Assurance:</strong>
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Quality Control:</em> Focuses on ensuring products conform to standards (e.g., through inspection).</li>
+                                        <li><em>Quality Assurance:</em> Broader, ensuring adherence to all standards and meeting performance requirements.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Dr. W. Edwards Deming's Principles:</strong> Advocated for a focus on quality over quantity, continuous training, involving workers in ideas, and using statistical methods for measurement.</li>
+                                <li><strong>Quality Costs:</strong> Costs associated with ensuring or failing to ensure quality.
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><strong class="text-amber-600">Prevention Costs:</strong> Incurred to prevent defects (e.g., training, quality planning).</li>
+                                        <li><strong class="text-amber-600">Appraisal Costs:</strong> Incurred to detect defects (e.g., inspection, testing).</li>
+                                        <li><strong class="text-amber-600">Internal Failure Costs:</strong> Incurred when defects are found *before* the product reaches the customer (e.g., scrap, rework).</li>
+                                        <li><strong class="text-amber-600">External Failure Costs:</strong> Incurred when defects are found *after* the product reaches the customer (e.g., warranty claims, customer returns, loss of reputation).</li>
+                                    </ul>
+                                </li>
+                                <li><strong>ISO Certifications:</strong>
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>ISO 9000:</em> International standards for quality management systems.</li>
+                                        <li><em>ISO 14000:</em> International standards for environmental management systems.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Benchmarking:</strong> Comparing a company's products, processes, and services to those of competitors or leading companies to identify areas for improvement.</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'business-environment-ethics',
+                title: 'Business Environment & Ethics',
+                category: 'Fundamentals',
+                content: `
+                    <p class="text-slate-600 mb-6">Businesses don't operate in isolation; they are constantly affected by their surroundings (the environment) and must operate ethically. This section explores these external influences and the importance of responsible business practices.</p>
+                    <div class="space-y-6">
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Business Environment</h3>
+                            <p class="text-slate-600 mb-2">A business's performance is shaped by both factors it can control and those it cannot.</p>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>External Factors (Uncontrollable):</strong> These are outside the company's direct influence but create opportunities or threats. They include:
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Technological:</em> New inventions, automation.</li>
+                                        <li><em>Economic:</em> Inflation, interest rates, consumer income.</li>
+                                        <li><em>Political/Legal:</em> Government policies, laws, regulations.</li>
+                                        <li><em>Socio-cultural:</em> Society's values, trends, demographics.</li>
+                                    </ul>
+                                    <p class="text-sm text-slate-500 mt-2">The marketing environment, for example, is best described as <strong class="text-amber-600">dynamic and constantly changing</strong>.</p>
+                                </li>
+                                <li><strong>Internal Factors (Controllable):</strong> These are within the company's control, such as its strengths and weaknesses.</li>
+                                <li><strong>SWOT Analysis:</strong> A tool used to analyze a company's <strong class="text-amber-600">S</strong>trengths, <strong class="text-amber-600">W</strong>eaknesses (internal), <strong class="text-amber-600">O</strong>pportunities, and <strong class="text-amber-600">T</strong>hreats (external).</li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Starting & Succeeding in Business</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Qualities of a Good Businessman:</strong> Includes planning ability, courage, honesty, hard work, leadership, and sound financial management.</li>
+                                <li><strong>Pre-requisites for Starting a Business:</strong> Before starting, consider product selection, feasibility (is it practical?), market demand, business size, capital availability, location, government policies, and availability of resources (raw materials, labor).</li>
+                                <li><strong>Entrepreneurship:</strong> Involves identifying opportunities, taking calculated risks, and creating new ventures. Entrepreneurs are often driven, need control, and can handle uncertainty.</li>
+                                <li><strong>Business Plan:</strong> A <strong class="text-amber-600">written document</strong> that outlines a business's objectives and how it plans to achieve them, covering marketing, financial, and operational aspects.</li>
+                                <li><strong>Business Success & Failure:</strong>
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Common Causes of Failure:</em> Lack of market knowledge, inexperience, poor financial control, not understanding customer demand, inefficient production, unmanaged costs, poor complaint handling, and insufficient capital.</li>
+                                        <li><em>Factors for Success:</em> Market responsiveness, competence, and knowledge of the market, product, and systems. Uncontrollable factors like "luck" and government laws also play a role.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Business Alliances & International Trade</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Franchising:</strong> A business model where a franchisor (e.g., McDonald's) grants a franchisee the right to use its trademark, name, and business system in exchange for fees.
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Advantages:</em> Access to a proven brand, lower failure rate, franchisor support.</li>
+                                        <li><em>Disadvantages:</em> High costs, less independence for the franchisee.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Business Alliances:</strong>
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Joint Ventures:</em> Two or more organizations combine resources for a specific project or mutual gain, sharing risks and rewards.</li>
+                                        <li><em>Strategic Alliances:</em> Broader collaborations where companies pool resources (products, distribution, expertise) for mutual profit.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Mergers & Acquisitions:</strong>
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Merger:</em> Two companies combine to form a <strong class="text-amber-600">new, single company</strong>.</li>
+                                        <li><em>Acquisition:</em> One company <strong class="text-amber-600">buys out another company</strong>.</li>
+                                    </ul>
+                                    <p class="text-sm text-slate-500 mt-2">These are strategies for growth, cost reduction, and reducing competition.</p>
+                                </li>
+                                <li><strong>Foreign Trade:</strong>
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Imports:</em> Goods bought from other countries.</li>
+                                        <li><em>Exports:</em> Goods sold to other countries.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Balance of Trade:</strong> The difference between a country's total exports and total imports.
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><strong class="text-amber-600">Trade Surplus:</strong> Exports > Imports.</li>
+                                        <li><strong class="text-amber-600">Trade Deficit:</strong> Imports > Exports.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Balance of Payments:</strong> A broader account of all financial transactions between a country and the rest of the world.</li>
+                                <li><strong>Barriers to International Trade:</strong> Factors that make international trade difficult:
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li>Social/Cultural differences, religion, climate.</li>
+                                        <li>Diverse laws (health, safety, pricing).</li>
+                                        <li>Economic disparities (differences in income levels).</li>
+                                        <li>Political systems.</li>
+                                        <li><strong class="text-amber-600">Tariffs:</strong> Taxes on imported goods.</li>
+                                        <li><strong class="text-amber-600">Quotas:</strong> Limits on the quantity of goods that can be imported.</li>
+                                        <li><em>Subsidies:</em> Government support for domestic industries.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Business Ethics & Social Responsibility</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Business Ethics:</strong> The moral principles and beliefs that guide a company's actions, ensuring they align with societal values and expectations.</li>
+                                <li><strong>Corporate Social Responsibility (CSR):</strong> A company's commitment to behave ethically and contribute to economic development while improving the quality of life for its workforce, families, and the local community and society at large. It means benefiting society and avoiding harmful activities.</li>
+                                <li><strong>Whistleblowers:</strong> Individuals who report illegal or unethical conduct within an organization. They play a key role in maintaining ethical standards.</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            },
+            {
+                id: 'business-communication-information-systems',
+                title: 'Business Communication & Information Systems',
+                category: 'Fundamentals',
+                content: `
+                    <p class="text-slate-600 mb-6">Effective communication is the lifeblood of any organization, and information systems are the tools that enable this flow of information and support decision-making. This section covers how information moves within and outside a business and the technologies that facilitate it.</p>
+                    <div class="space-y-6">
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Business Communication</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Definition:</strong> Communication is simply the <strong class="text-amber-600">transmission of information</strong> from one place, person, or organization to another. It's often called the <strong class="text-amber-600">"blood of the organization"</strong> because it's so vital for its functioning.</li>
+                                <li><strong>Flow of Communication:</strong>
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><strong class="text-amber-600">Upward Communication:</strong> Flows from <strong class="text-amber-600">lower to higher management</strong> (e.g., a supervisor reporting to a manager).</li>
+                                        <li><strong class="text-amber-600">Downward Communication:</strong> Flows from <strong class="text-amber-600">higher to lower management</strong> (e.g., a CEO announcing a new policy to employees).</li>
+                                        <li><em>Internal Communication:</em> Within the organization.</li>
+                                        <li><em>External Communication:</em> With outside entities (customers, suppliers, public).</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Communication Process:</strong>
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Sender (Encoder):</em> Creates the message and puts it into an understandable form.</li>
+                                        <li><em>Channel:</em> The medium through which the message travels (e.g., email, phone call, meeting).</li>
+                                        <li><em>Receiver (Decoder):</em> Interprets the message.</li>
+                                        <li><em>Noise:</em> Anything that interferes with the communication process (e.g., distractions, misunderstandings). Noise can occur at any stage.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Types of Communication:</strong>
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Verbal:</em> Uses words (written - letters, emails; oral - speeches, conversations).</li>
+                                        <li><em>Non-verbal:</em> Communication without words (e.g., body language, facial expressions, tone of voice, appearance, silence).</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Business Correspondence:</strong>
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Letters:</em> Used for <strong class="text-amber-600">external communication</strong> (e.g., to customers, suppliers).</li>
+                                        <li><em>Memoranda (Memos):</em> Used for <strong class="text-amber-600">internal communication</strong> within the organization.</li>
+                                    </ul>
+                                    <p class="text-sm text-slate-500 mt-2">Various types of letters exist for different purposes (inquiry, reply, order, complaint, adjustment).</p>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="bg-white p-5 rounded-lg shadow-sm border border-slate-200">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-3">Information Systems (IS)</h3>
+                            <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                <li><strong>Definition:</strong> An IS is an organized way to collect, manage, and distribute information to support decision-making. It identifies, measures, records, and retains financial and other economic information.</li>
+                                <li><strong>Data vs. Information:</strong>
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><em>Data:</em> Raw, unorganized facts and figures (e.g., a list of sales numbers).</li>
+                                        <li><em>Information:</em> Data that has been processed and organized to be meaningful and useful for decision-making (e.g., a sales report analyzing trends).</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Importance of IS:</strong> Crucial due to the constant need for information, rapid technological changes, and the rise of new communication tools.</li>
+                                <li><strong>Applications of IS:</strong> IS helps businesses by:
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li>Creating leaner (more efficient) organizations.</li>
+                                        <li>Enabling more flexible operations (e.g., mass customization).</li>
+                                        <li>Increasing collaboration (e.g., virtual companies).</li>
+                                        <li>Improving management processes and decision-making.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Types of Information Systems:</strong>
+                                    <ul class="list-circle list-inside ml-5">
+                                        <li><strong class="text-amber-600">Management Information Systems (MIS):</strong> Provides routine reports and summaries for general management decision-making.</li>
+                                        <li><strong class="text-amber-600">Decision Support Systems (DSS):</strong> Interactive systems that help managers make specific, non-routine decisions by analyzing data.</li>
+                                        <li><strong class="text-amber-600">Executive Support Systems (ESS):</strong> Designed for top-level executives to support strategic planning and decision-making, often providing summarized information from internal and external sources.</li>
+                                        <li><strong class="text-amber-600">Enterprise Resource Planning (ERP):</strong> A <strong class="text-amber-600">large-scale, integrated information system</strong> that manages and organizes all major business processes (e.g., finance, HR, operations) across different departments and locations within an organization.</li>
+                                    </ul>
+                                </li>
+                                <li><strong>Components of an IS:</strong> Hardware, software, controls, databases, people, and telecommunications.</li>
+                            </ul>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        // Global state for recent notes
+        let recentNotes = [];
+        const MAX_RECENT_NOTES = 5;
+
+        // Function to update recent notes
+        function updateRecentNotes(noteId, noteTitle) {
+            // Remove if already in recentNotes
+            recentNotes = recentNotes.filter(note => note.id !== noteId);
+            // Add to the beginning
+            recentNotes.unshift({ id: noteId, title: noteTitle });
+            // Keep only the latest MAX_RECENT_NOTES
+            if (recentNotes.length > MAX_RECENT_NOTES) {
+                recentNotes.pop();
+            }
+            renderRecentNotes();
+        }
+
+        // Function to render recent notes in the sidebar
+        function renderRecentNotes() {
+            const recentList = document.getElementById('recentList');
+            recentList.innerHTML = ''; // Clear existing list
+            if (recentNotes.length === 0) {
+                recentList.innerHTML = '<li class="text-slate-500">No recent notes.</li>';
+                return;
+            }
+            recentNotes.forEach(note => {
+                const li = document.createElement('li');
+                li.className = 'p-2 hover:bg-slate-700 rounded-md cursor-pointer';
+                li.textContent = note.title;
+                li.dataset.target = note.id;
+                li.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    showContent(note.id);
+                });
+                recentList.appendChild(li);
+            });
+        }
+
+        // Function to render navigation links
+        function renderNavigation() {
+            const navigationDiv = document.getElementById('navigation');
+            navigationDiv.innerHTML = ''; // Clear existing navigation
+
+            // Group handouts by category
+            const categories = {};
+            handoutsData.forEach(handout => {
+                if (!categories[handout.category]) {
+                    categories[handout.category] = [];
+                }
+                categories[handout.category].push(handout);
+            });
+
+            // Create navigation links for each category and its handouts
+            for (const category in categories) {
+                const categoryHeader = document.createElement('h3');
+                categoryHeader.className = 'text-lg font-semibold text-white mt-4 mb-2';
+                categoryHeader.textContent = category;
+                navigationDiv.appendChild(categoryHeader);
+
+                categories[category].forEach(handout => {
+                    const link = document.createElement('a');
+                    link.href = `#${handout.id}`;
+                    link.className = 'nav-link flex items-center p-3 rounded-lg mb-2 hover:bg-slate-700';
+                    link.innerHTML = `<svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01"></path></svg>${handout.title}`;
+                    link.dataset.target = handout.id;
+                    navigationDiv.appendChild(link);
+                });
+            }
+        }
+
+        // Function to populate main content area
+        function populateMainContent() {
+            const mainContent = document.querySelector('main');
+            mainContent.innerHTML = ''; // Clear existing content
+
+            handoutsData.forEach(handout => {
+                const section = document.createElement('section');
+                section.id = handout.id;
+                section.className = 'content-section';
+                section.innerHTML = `
+                    <h2 class="text-3xl font-bold text-slate-900 mb-4">${handout.title}</h2>
+                    ${handout.content}
+                `;
+                mainContent.appendChild(section);
+            });
+        }
+
+        // Function to show specific content section
+        function showContent(targetId) {
+            const contentSections = document.querySelectorAll('.content-section');
+            const navLinks = document.querySelectorAll('.nav-link');
+
+            contentSections.forEach(section => {
+                section.classList.remove('active');
+            });
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            document.getElementById(targetId).classList.add('active');
+            const activeNavLink = document.querySelector(`.nav-link[data-target="${targetId}"]`);
+            if (activeNavLink) {
+                activeNavLink.classList.add('active');
+            }
+
+            // Update recent notes
+            const activeHandout = handoutsData.find(h => h.id === targetId);
+            if (activeHandout) {
+                updateRecentNotes(activeHandout.id, activeHandout.title);
+            }
+
+            window.scrollTo(0, 0); // Scroll to top of the content
+        }
+
+        // Function to toggle expandable cards
+        function toggleCard(headerElement) {
+            const content = headerElement.nextElementSibling;
+            const icon = headerElement.querySelector('svg');
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.classList.add('open');
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Search functionality
+        function setupSearch() {
+            const searchBar = document.getElementById('searchBar');
+            searchBar.addEventListener('keyup', (e) => {
+                const searchTerm = e.target.value.toLowerCase();
+                const mainContent = document.querySelector('main');
+                mainContent.innerHTML = ''; // Clear current content
+
+                if (searchTerm === '') {
+                    // If search bar is empty, show the first handout or default view
+                    showContent(handoutsData[0].id);
+                    return;
+                }
+
+                const filteredHandouts = handoutsData.filter(handout =>
+                    handout.title.toLowerCase().includes(searchTerm) ||
+                    handout.content.toLowerCase().includes(searchTerm)
+                );
+
+                if (filteredHandouts.length > 0) {
+                    filteredHandouts.forEach(handout => {
+                        const section = document.createElement('section');
+                        section.id = handout.id;
+                        section.className = 'content-section active'; // Show all search results
+                        let highlightedContent = handout.content;
+                        if (searchTerm.length > 2) { // Only highlight for longer search terms
+                            const regex = new RegExp(`(${searchTerm})`, 'gi');
+                            highlightedContent = handout.content.replace(regex, '<mark class="bg-amber-200 rounded-sm">$1</mark>');
+                        }
+                        
+                        section.innerHTML = `
+                            <h2 class="text-3xl font-bold text-slate-900 mb-4">${handout.title}</h2>
+                            ${highlightedContent}
+                        `;
+                        mainContent.appendChild(section);
+                    });
+                } else {
+                    mainContent.innerHTML = `
+                        <div class="bg-white p-6 rounded-lg shadow-md text-center">
+                            <h3 class="text-xl font-semibold text-slate-800 mb-2">No results found</h3>
+                            <p class="text-slate-600">Try a different search term or browse through the categories.</p>
+                        </div>
+                    `;
+                }
+
+                // Re-attach event listeners for expandable cards in search results
+                document.querySelectorAll('.expandable-card-header').forEach(header => {
+                    header.removeEventListener('click', () => toggleCard(header)); // Prevent double attachment
+                    header.addEventListener('click', () => toggleCard(header));
+                });
+            });
+        }
+
+        // Theme toggle functionality
+        function setupThemeToggle() {
+            const themeToggle = document.getElementById('themeToggle');
+            const body = document.body;
+
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                body.classList.add('dark-theme');
+            }
+
+            themeToggle.addEventListener('click', () => {
+                body.classList.toggle('dark-theme');
+                if (body.classList.contains('dark-theme')) {
+                    localStorage.setItem('theme', 'dark');
+                } else {
+                    localStorage.setItem('theme', 'light');
+                }
+            });
+        }
+
+        // Mobile sidebar toggle
+        function setupMobileSidebarToggle() {
+            const sidebarToggle = document.getElementById('sidebarToggle');
+            const sidebar = document.querySelector('.sidebar');
+            sidebarToggle.addEventListener('click', () => {
+                sidebar.classList.toggle('hidden-mobile');
+            });
+            // Hide sidebar on content click for mobile
+            document.querySelector('main').addEventListener('click', () => {
+                if (window.innerWidth < 768 && !sidebar.classList.contains('hidden-mobile')) {
+                    sidebar.classList.add('hidden-mobile');
+                }
+            });
+        }
+
+
+        // Initial setup on DOMContentLoaded
+        document.addEventListener('DOMContentLoaded', () => {
+            renderNavigation();
+            populateMainContent();
+            setupSearch();
+            setupThemeToggle();
+            setupMobileSidebarToggle();
+            renderRecentNotes(); // Render initial recent notes
+
+            // Set up click listeners for navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const targetId = e.currentTarget.dataset.target;
+                    showContent(targetId);
+                    if (window.innerWidth < 768) { // Hide sidebar on mobile after selection
+                        document.querySelector('.sidebar').classList.add('hidden-mobile');
+                    }
+                });
+            });
+
+            // Set up click listeners for expandable card headers
+            document.querySelectorAll('.expandable-card-header').forEach(header => {
+                header.addEventListener('click', () => toggleCard(header));
+            });
+
+            // Show the first handout by default on load
+            if (handoutsData.length > 0) {
+                showContent(handoutsData[0].id);
+            }
+        });
+    </script>
+</body>
+</html>
